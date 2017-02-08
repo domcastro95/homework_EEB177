@@ -1,0 +1,1 @@
+The directories are listed alphabetical at each level, the files/directories in each directory are sorted by time of last change.

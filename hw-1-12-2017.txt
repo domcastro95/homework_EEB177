@@ -1,0 +1,9 @@
+1. No: . stands for the current directory.
+2. NO: / stands for the root directory.
+3. No: Amanda's home direcotry is /Users/amanda
+4. No: this goes up two levels, i.e. ends in /Users.
+5. Yes: ~ stands for the user's home directory, in the case /Users/amanda.
+6. No: this would navigate into a directory home in the current directory if it exists.
+7. yes: unnecessarily complicated, but correct.
+8. Yes: SHORTCUT TO GO BACK TO THE USER'S HOME DIRECTORY.
+9. yES: GOES UP ONE LEVEL. 

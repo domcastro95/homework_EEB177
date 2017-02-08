@@ -1,0 +1,5 @@
+1. No: pwd is not the name of a directory.
+2. Yes: ls without directory argument lists files and directories in the current directory.
+3. Yes: uses the absolute path explicitly.
+4. Correct: See explantions above.
+
