@@ -1,0 +1,119 @@
+---
+title: "r-week-8-hw-eeb174.Rmd"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+#Exploring Data Frames 1-8
+
+1.
+df <- data.frame(first = c('Dominique'),
+                 last = c('Castro'),
+                 lucky_number = c(8),
+                 stringsAsFactors = FALSE)
+df <- rbind(df, list('Donna', 'Matthew', 238) )
+df <- cbind(df, coffeetime = c(TRUE,TRUE))
+
+2. 
+download.file("https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/gh-pages/_episodes_rmd/data/gapminder-FiveYearData.csv", destfile = "data/gapminder-FiveYearData.csv")
+gapminder <- read.csv(file = "data/gapminder-FiveYearData.csv")
+
+source(file = "scripts/load-gapminder.R")
+
+3.
+The object gapminder is a data frame with columns
+
+    country and continent are factors.
+    year is an integer vector.
+    pop, lifeExp, and gdpPercap are numeric vectors.
+
+#Data Subsetting
+1.
+x <- c(5.4, 6.2, 7.1, 4.8, 7.5)
+names(x) <- c('a', 'b', 'c', 'd', 'e')
+print(x)
+x[2:4]
+x[-c(1,5)]
+x[c(2,3,4)]
+
+2.
+x <- c(5.4, 6.2, 7.1, 4.8, 7.5)
+names(x) <- c('a', 'b', 'c', 'd', 'e')
+print(x)
+A & C 
+
+3.
+x <- c(5.4, 6.2, 7.1, 4.8, 7.5)
+names(x) <- c('a', 'b', 'c', 'd', 'e')
+print(x)
+x_subset <- x[x<7 & x>4]
+print(x_subset)
+
+4.
+m <- matrix(1:18, nrow=3, ncol=6)
+print(m)
+D. m[2,c(4,5)]
+
+5.
+xlist <- list(a = "Software Carpentry", b = 1:10, data = head(iris))
+xlist$b[2]
+xlist[[2]][2]
+xlist[["b"]][2]
+
+6.
+mod <- aov(pop ~ lifeExp, data=gapminder)
+attributes(mod) ## `df.residual` is one of the names of `mod`
+mod$df.residual
+
+7.
+1.gapminder[gapminder$year == 1957,]
+2.gapminder[,-c(1:4)]
+3.gapminder[gapminder$lifeExp > 80,]
+4.gapminder[1, c(4, 5)]
+5.gapminder[gapminder$year == 2002 | gapminder$year == 2007,]
+5.gapminder[gapminder$year %in% c(2002, 2007),]
+
+8.
+1.gapminder is a data.frame so needs to be subsetted on two dimensions. gapminder[1:20, ] subsets the data to give the first 20 rows and all columns.
+2.gapminder_small <- gapminder[c(1:9, 19:23),]
+
+#Creating Publication-Quaility Graphs
+1.
+ggplot(data = gapminder, aes(x = year, y = lifeExp)) + geom_point()
+2.
+ggplot(data = gapminder, aes(x = year, y = lifeExp, color=continent)) + geom_point()
+3.
+ggplot(data = gapminder, aes(x=year, y=lifeExp, by=country)) + geom_point() + geom_line(aes(color=continent))
+
+4.
+a.
+ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) + geom_point(size=3, color="orange") + scale_x_log10() + geom_smooth(method="lm", size=1.5)
+
+b.
+ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp, color = continent)) + geom_point(size=3, pch=17) + scale_x_log10() + geom_smooth(method="lm", size=1.5)
+
+5.
+ggplot(data = gapminder, aes(x = gdpPercap, fill=continent)) + geom_density(alpha=0.6) + facet_wrap( ~ year) + scale_x_log10()
