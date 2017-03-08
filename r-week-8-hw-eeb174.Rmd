@@ -117,3 +117,17 @@ ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp, color = continent)) + g
 
 5.
 ggplot(data = gapminder, aes(x = gdpPercap, fill=continent)) + geom_density(alpha=0.6) + facet_wrap( ~ year) + scale_x_log10()
+
+
+#Python HW Continued (Visualization)
+1.What taxonomic group is displayed?
+Cynoditae
+
+2.How many unique fossil species are contained within it?
+358
+
+3.How many unique fossil genera?
+200
+
+4.What species has the longest 
+Vulpae
